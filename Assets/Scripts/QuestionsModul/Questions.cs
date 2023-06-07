@@ -21,7 +21,7 @@ public class Questions : MonoBehaviour
     [SerializeField] private Text answer2Text;
     [SerializeField] private Text answer3Text;
 
-    public event Action<int> selectedButton;
+    public event Action<int> SelectedButton;
 
     public event Action<bool> AnswerSelected;
 
@@ -29,7 +29,6 @@ public class Questions : MonoBehaviour
 
     private void Start()
     {
-
         answer1Button.onClick.AddListener(() => OnAnswerSelected(1));
         answer2Button.onClick.AddListener(() => OnAnswerSelected(2));
         answer3Button.onClick.AddListener(() => OnAnswerSelected(3));
@@ -47,13 +46,8 @@ public class Questions : MonoBehaviour
         answer3Text.text = _currentQuest.Answer3;
     }
 
-    void Update()
-    {
-
-    }
-
     public void OnAnswerSelected(int check)
     {
-        AnswerSelected?.Invoke(_currentQuest.CorrentAnswerIndex == check);
+        AnswerSelected?.Invoke(_currentQuest.CorrectAnswerIndex == check);
     }
 }

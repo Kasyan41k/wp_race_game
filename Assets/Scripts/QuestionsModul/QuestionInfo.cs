@@ -10,11 +10,11 @@ public class QuestionInfo
     [SerializeField] private string answer3;
     [SerializeField] private int correctAnsIndex;
 
-    public string Question { get { return question; } }
-    public string Answer1 { get { return answer1; } }
-    public string Answer2 { get { return answer2; } }
-    public string Answer3 { get { return answer3; } }
-    public int CorrentAnswerIndex { get { return correctAnsIndex; } }
+    public string Question => question;
+    public string Answer1 => answer1;
+    public string Answer2 => answer2;
+    public string Answer3 => answer3;
+    public int CorrectAnswerIndex => correctAnsIndex;
 
     public QuestionInfo(string question, string ans, string ans2, string ans3, int correctAnsIndex)
     {
