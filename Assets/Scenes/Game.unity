@@ -196,6 +196,25 @@ PrefabInstance:
       objectReference: {fileID: 1238782686}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5babe7a9725ddfd45aad851382b060ac, type: 3}
+--- !u!1 &385035797 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6118388898506502396, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+  m_PrefabInstance: {fileID: 1404464382}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &385035799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385035797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2215ec963f66488cbd4f0419ddca4654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 680023050}
+  levelQuestion: {fileID: 11400000, guid: ac65c7107497d0f4e97fc9a95884cd59, type: 2}
 --- !u!1 &500605986
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +354,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7578803254936085752, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
   m_PrefabInstance: {fileID: 1404464382}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 385035797}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -346,7 +365,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8092905410921608768, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
   m_PrefabInstance: {fileID: 1404464382}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1780587489}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -875,6 +894,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2986118701462621734, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 478.0509
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986118701462621734, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 68.2347
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986118701462621734, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 239.02553
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986118701462621735, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2986118701466757223, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
       propertyPath: m_SizeDelta.x
       value: 400
@@ -1175,6 +1210,18 @@ PrefabInstance:
       propertyPath: levelsSelectData.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5124473559347160550, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+      propertyPath: levelsSelectButtons.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124473559347160550, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+      propertyPath: levelsSelectButtons.Array.data[0]
+      value: 
+      objectReference: {fileID: 385035799}
+    - target: {fileID: 5124473559347160550, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+      propertyPath: levelsSelectButtons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1780587491}
     - target: {fileID: 5124473559347160550, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
       propertyPath: levelsSelectData.Array.data[1].levelId
       value: 1
@@ -1540,6 +1587,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00df62b70f5b0384c923290331214178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1780587489 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1448944994491809363, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+  m_PrefabInstance: {fileID: 1404464382}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1780587491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780587489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2215ec963f66488cbd4f0419ddca4654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 953265351}
+  levelQuestion: {fileID: 11400000, guid: fb6671475471b39458fef1369f45fc25, type: 2}
 --- !u!1001 &1810587736
 PrefabInstance:
   m_ObjectHideFlags: 0

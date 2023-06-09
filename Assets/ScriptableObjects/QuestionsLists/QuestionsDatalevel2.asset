@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 2
   questions:
-  - question: 
-    answer1: 
-    answer2: 
-    answer3: 
-    correctAnsIndex: 0
+  - question: 3+7=?
+    answer1: 1
+    answer2: 4
+    answer3: 10
+    correctAnsIndex: 3

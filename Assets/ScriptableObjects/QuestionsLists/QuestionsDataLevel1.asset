@@ -18,9 +18,9 @@ MonoBehaviour:
     answer1: "\u0412\u0430\u0441\u044F"
     answer2: "\u041F\u0435\u0442\u044F"
     answer3: "\u041E\u043B\u0435\u0433"
-    correctAnsIndex: 2
+    correctAnsIndex: 3
   - question: "\u0425\u0442\u043E \u0442\u0438?"
     answer1: "\u0414\u043E\u0434\u044B\u043A"
     answer2: "\u041F\u044B\u0434\u0430\u0440"
     answer3: "\u0413\u043E\u0432\u043D\u043E"
-    correctAnsIndex: 0
+    correctAnsIndex: 1
