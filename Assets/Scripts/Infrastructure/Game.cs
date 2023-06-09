@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using PlayerModule;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,11 +19,16 @@ namespace Infrastructure
 
         public event Action GameEnd;
 
-        public void StartGame(int levelId)
+        private int _countOfLose;
+
+        public void StartGame(List<QuestionInfo> questionInfos)
         {
+            scoreTextInGame.gameObject.SetActive(true);
+            _countOfLose = 0;
             _gameIsProcess = true;
             PlayerPrefs.SetInt("Score", 0);
             StartCoroutine(ScoreNumerable());
+            questionPanel.Init(questionInfos);
             questionPanel.AnswerSelected += OnAnswerSelected;
             enemiesSpawner.StartSpawn();
             player.gameObject.SetActive(true);
@@ -31,8 +37,10 @@ namespace Infrastructure
 
         public void StopGame()
         {
+            scoreTextInGame.gameObject.SetActive(false);
             _gameIsProcess = false;
             GameEnd?.Invoke();
+            questionPanel.AnswerSelected -= OnAnswerSelected;
             questionPanel.gameObject.SetActive(false);
             enemiesSpawner.StopSpawn();
             player.gameObject.SetActive(false);
@@ -70,10 +78,18 @@ namespace Infrastructure
         private void LoseGame()
         {
             Time.timeScale = 0f;
-            scoreTextInGame.text = "Your score:\n" + _score.ToString();
+            scoreTextInGame.text = "Your score: " + _score;
             PlayerPrefs.SetInt("Speed", 0);
+
+            if (++_countOfLose > 3)
+            {
+                StopGame();
+                return;
+            }
+                
+            
             questionPanel.gameObject.SetActive(true);
-            questionPanel.InitializeQuest();
+            questionPanel.GenerateQuest();
         }
     }
 }

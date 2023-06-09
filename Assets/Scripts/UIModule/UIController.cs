@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Infrastructure;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -24,9 +25,9 @@ namespace UIModule
             startGameMenuUI.gameObject.SetActive(true);
         }
 
-        private void OnLevelSelected(int levelId)
+        private void OnLevelSelected(List<QuestionInfo> questionInfos)
         {
-            game.StartGame(levelId);
+            game.StartGame(questionInfos);
             levelSelectUI.gameObject.SetActive(false);
             mainMenu.gameObject.SetActive(false);
         }

@@ -1,28 +1,27 @@
 using System;
 using System.Collections.Generic;
-using UIModule.Data;
+using Infrastructure;
 using UnityEngine;
 
 namespace UIModule
 {
     public class LevelSelectUI : MonoBehaviour
     {
-        [SerializeField] private List<LevelSelectData> levelsSelectData;
+        [SerializeField] private List<LevelSelectionButton> levelsSelectButtons;
 
-        public event Action<int> LevelSelected;
+        public event Action<List<QuestionInfo>> LevelSelected;
         
         public void Start()
         {
-            foreach (var levelSelectData in levelsSelectData)
+            foreach (var levelSelectButton in levelsSelectButtons)
             {
-                levelSelectData.Init();
-                levelSelectData.LevelSelected += OnLevelSelected;
+                levelSelectButton.LevelSelected += OnLevelSelected;
             }
         }
 
-        private void OnLevelSelected(int levelId)
+        private void OnLevelSelected(List<QuestionInfo> questionInfos)
         {
-            LevelSelected?.Invoke(levelId);
+            LevelSelected?.Invoke(questionInfos);
         }
     }
 }

@@ -35,7 +35,12 @@ public class Questions : MonoBehaviour
 
     }
 
-    public void InitializeQuest()
+    public void Init(List<QuestionInfo> questionInfos)
+    {
+        _questionsArray = questionInfos.ToArray();
+    }
+
+    public void GenerateQuest()
     {
         _currentQuest = _questionsArray[UnityEngine.Random.Range(0, _questionsArray.Length)];
 
