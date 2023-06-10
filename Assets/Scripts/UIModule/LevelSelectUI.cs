@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Infrastructure;
+using QuestionsModule;
 using UnityEngine;
 
 namespace UIModule
@@ -9,7 +10,7 @@ namespace UIModule
     {
         [SerializeField] private List<LevelSelectionButton> levelsSelectButtons;
 
-        public event Action<List<QuestionInfo>> LevelSelected;
+        public event Action<LevelData> LevelSelected;
         
         public void Start()
         {
@@ -19,9 +20,9 @@ namespace UIModule
             }
         }
 
-        private void OnLevelSelected(List<QuestionInfo> questionInfos)
+        private void OnLevelSelected(LevelData levelData)
         {
-            LevelSelected?.Invoke(questionInfos);
+            LevelSelected?.Invoke(levelData);
         }
     }
 }

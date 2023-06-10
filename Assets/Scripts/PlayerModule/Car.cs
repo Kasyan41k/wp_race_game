@@ -6,6 +6,7 @@ namespace PlayerModule
     public class Car : MonoBehaviour
     {
         [SerializeField] public float carSpeed;
+        [SerializeField] private Vector2 startPosition;
         private  Vector2 _carPosition;
 
         public event Action Died;
@@ -31,6 +32,11 @@ namespace PlayerModule
                 Destroy(col.gameObject);
                 Died?.Invoke();
             }
+        }
+
+        public void Reset()
+        {
+            transform.position = startPosition;
         }
     }
 }

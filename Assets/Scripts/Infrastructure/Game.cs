@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using PlayerModule;
+using QuestionsModule;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,39 +11,52 @@ namespace Infrastructure
     {
         [SerializeField] private EnemiesSpawner enemiesSpawner;
         [SerializeField] private Car player;
-        [SerializeField] private Text scoreTextInGame;
+        [SerializeField] private Text scoreText;
         [SerializeField] private Questions questionPanel;
 
+        private LevelData _currentLevelData;
         private int _score = 0;
-        private bool _gameIsProcess;
-
-        public event Action GameEnd;
+        private bool _gameInProcess;
+        private Coroutine _scoreCounterCoroutine;
+        
+        public event Action GameCompleted;
+        public event Action GameLost;
 
         private int _countOfLose;
 
-        public void StartGame(List<QuestionInfo> questionInfos)
+        public void StartGame(LevelData levelData)
         {
-            scoreTextInGame.gameObject.SetActive(true);
+            _currentLevelData = levelData.Copy();
+            
+            scoreText.gameObject.SetActive(true);
+            
+            _score = 0;
+            scoreText.text = "0";
+            
             _countOfLose = 0;
-            _gameIsProcess = true;
-            PlayerPrefs.SetInt("Score", 0);
-            StartCoroutine(ScoreNumerable());
-            questionPanel.Init(questionInfos);
+            _gameInProcess = true;
+            
+            questionPanel.Init(levelData.Questions);
             questionPanel.AnswerSelected += OnAnswerSelected;
+            
+            _scoreCounterCoroutine = StartCoroutine(ScoreNumerable());
+            
             enemiesSpawner.StartSpawn();
             player.gameObject.SetActive(true);
+            //player.Reset();
             player.Died += LoseGame;
         }
 
         public void StopGame()
         {
-            scoreTextInGame.gameObject.SetActive(false);
-            _gameIsProcess = false;
-            GameEnd?.Invoke();
+            scoreText.gameObject.SetActive(false);
+            _gameInProcess = false;
+            StopCoroutine(_scoreCounterCoroutine);
             questionPanel.AnswerSelected -= OnAnswerSelected;
             questionPanel.gameObject.SetActive(false);
             enemiesSpawner.StopSpawn();
             player.gameObject.SetActive(false);
+            
         }
 
         private void OnAnswerSelected(bool answerIsCorrect)
@@ -51,6 +64,7 @@ namespace Infrastructure
             if (answerIsCorrect)
             {
                 ResumeGame();
+                questionPanel.gameObject.SetActive(false);
             }
             else
             {
@@ -60,33 +74,50 @@ namespace Infrastructure
 
         private void ResumeGame()
         {
-            questionPanel.gameObject.SetActive(false);
             Time.timeScale = 1f;
         }
         
         private IEnumerator ScoreNumerable()
         {
-            while (_gameIsProcess)
+            while (_gameInProcess)
             {
                 yield return new WaitForSeconds(0.75f);
                 _score++;
-                scoreTextInGame.text = _score.ToString();
-                PlayerPrefs.SetInt("Score", _score);
+                scoreText.text = _score.ToString();
+
+                if (_score >= _currentLevelData.MaxScore)
+                {
+                    _score = _currentLevelData.MaxScore;
+                    CompleteGame();
+                    yield break;
+                }
+                
+                //PlayerPrefs.SetInt("Score", _score);
             }
+        }
+
+        private void CompleteGame()
+        {
+            StopGame();
+            GameCompleted?.Invoke();
+        }
+
+        private void PauseGame()
+        {
+            Time.timeScale = 0f;
+            scoreText.text = "Your score: " + _score;
         }
         
         private void LoseGame()
         {
-            Time.timeScale = 0f;
-            scoreTextInGame.text = "Your score: " + _score;
-            PlayerPrefs.SetInt("Speed", 0);
+            PauseGame();
 
             if (++_countOfLose > 3)
             {
                 StopGame();
+                GameLost?.Invoke();
                 return;
             }
-                
             
             questionPanel.gameObject.SetActive(true);
             questionPanel.GenerateQuest();

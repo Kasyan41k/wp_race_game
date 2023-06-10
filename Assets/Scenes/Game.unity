@@ -134,10 +134,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: car
       objectReference: {fileID: 0}
-    - target: {fileID: 8048438009754229633, guid: 5babe7a9725ddfd45aad851382b060ac, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8048438009754229635, guid: 5babe7a9725ddfd45aad851382b060ac, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -182,18 +178,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8048438009754229636, guid: 5babe7a9725ddfd45aad851382b060ac, type: 3}
-      propertyPath: questionPanel
-      value: 
-      objectReference: {fileID: 501913105}
-    - target: {fileID: 8048438009754229636, guid: 5babe7a9725ddfd45aad851382b060ac, type: 3}
-      propertyPath: scoreTextInGame
-      value: 
-      objectReference: {fileID: 1238782686}
-    - target: {fileID: 8048438009754229636, guid: 5babe7a9725ddfd45aad851382b060ac, type: 3}
-      propertyPath: scoreTextAfterGame
-      value: 
-      objectReference: {fileID: 1238782686}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5babe7a9725ddfd45aad851382b060ac, type: 3}
 --- !u!1 &385035797 stripped
@@ -214,7 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 680023050}
-  levelQuestion: {fileID: 11400000, guid: ac65c7107497d0f4e97fc9a95884cd59, type: 2}
+  levelDataSo: {fileID: 11400000, guid: 8a31da86807108947ba01587ad8630cd, type: 2}
 --- !u!1 &500605986
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,6 +274,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb11a4cea9ccfb24caf834a61987e0eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &528888761 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2986118701320924286, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+  m_PrefabInstance: {fileID: 1404464382}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &634914737
@@ -382,6 +377,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95eced32cde743f19396558418418ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1080842606 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2986118701946577241, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+  m_PrefabInstance: {fileID: 1404464382}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1080842607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080842606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5b98b1cd5924051b4ba928bba924b64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  returnInMenuButton: {fileID: 528888761}
 --- !u!114 &1238782686 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2986118701462621753, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
@@ -667,6 +680,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2986118700236231986, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+      propertyPath: m_Color.b
+      value: 0.2206746
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986118700236231986, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8207547
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986118700236231986, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+      propertyPath: m_Color.r
+      value: 0.24270728
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986118700236231986, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
       propertyPath: m_FontData.m_MaxSize
       value: 50
       objectReference: {fileID: 0}
@@ -797,6 +822,26 @@ PrefabInstance:
     - target: {fileID: 2986118701252185839, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
       propertyPath: m_FontData.m_FontStyle
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986118701320924273, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+      propertyPath: m_Color.b
+      value: 0.72156864
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986118701320924273, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+      propertyPath: m_Color.g
+      value: 0.83137256
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986118701320924286, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.98039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986118701320924286, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986118701320924286, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.5803922
       objectReference: {fileID: 0}
     - target: {fileID: 2986118701320924287, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1050,6 +1095,10 @@ PrefabInstance:
       propertyPath: game
       value: 
       objectReference: {fileID: 1846438444}
+    - target: {fileID: 3770275606474176727, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
+      propertyPath: finishUI
+      value: 
+      objectReference: {fileID: 1080842607}
     - target: {fileID: 3770275606474176727, guid: 3b86d1c0cae9f4243a3c8a857ecd17d3, type: 3}
       propertyPath: mainMenu
       value: 
@@ -1605,7 +1654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 953265351}
-  levelQuestion: {fileID: 11400000, guid: fb6671475471b39458fef1369f45fc25, type: 2}
+  levelDataSo: {fileID: 11400000, guid: e4c6289f5b068464aa233fc90a5e05fd, type: 2}
 --- !u!1001 &1810587736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1698,7 +1747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesSpawner: {fileID: 1598885877}
   player: {fileID: 972530749}
-  scoreTextInGame: {fileID: 1238782686}
+  scoreText: {fileID: 1238782686}
   questionPanel: {fileID: 501913105}
 --- !u!4 &1846438445
 Transform:

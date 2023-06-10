@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using QuestionsModule;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "QuestionsData", menuName = "ScriptableObjects/QuestionsList", order = 2)]

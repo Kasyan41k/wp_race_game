@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using QuestionsModule;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,9 +9,9 @@ namespace Infrastructure
     public class LevelSelectionButton : MonoBehaviour
     {
         [SerializeField] private Button button;
-        [SerializeField] private QuestionDataSo levelQuestion;
+        [SerializeField] private LevelDataSo levelDataSo;
 
-        public event Action<List<QuestionInfo>> LevelSelected;
+        public event Action<LevelData> LevelSelected;
 
         public void Start()
         {
@@ -19,7 +20,7 @@ namespace Infrastructure
 
         private void OnButtonClicked()
         {
-            LevelSelected?.Invoke(levelQuestion.GetQuestionInfo);
+            LevelSelected?.Invoke(levelDataSo.LevelData);
         }
     }
 }

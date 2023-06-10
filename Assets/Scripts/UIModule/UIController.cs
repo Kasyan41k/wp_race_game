@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Infrastructure;
+using QuestionsModule;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,13 +12,25 @@ namespace UIModule
         [SerializeField] private MainMenu mainMenu;
         [SerializeField] private LevelSelectUI levelSelectUI;
         [SerializeField] private StartGameMenuUI startGameMenuUI;
+        [SerializeField] private FinishUI finishUI;
 
         private void Start()
         {
-            startGameMenuUI.PlayClicked += PlayGame;
+            startGameMenuUI.PlayClicked += OpenLevelSelectionMenu;
             levelSelectUI.LevelSelected += OnLevelSelected;
-            game.GameEnd += LoadMainMenu;
+            
+            game.GameLost += LoadMainMenu;
+            game.GameCompleted += OnGameCompleted;
+
+            finishUI.Init();
+            finishUI.ReturnToLevelSelectionButtonClicked += OpenLevelSelectionMenu;
         }
+
+        private void OnGameCompleted()
+        {
+            finishUI.gameObject.SetActive(true);
+        }
+
 
         private void LoadMainMenu()
         {
@@ -25,18 +38,18 @@ namespace UIModule
             startGameMenuUI.gameObject.SetActive(true);
         }
 
-        private void OnLevelSelected(List<QuestionInfo> questionInfos)
+        private void OnLevelSelected(LevelData levelData)
         {
-            game.StartGame(questionInfos);
+            game.StartGame(levelData);
             levelSelectUI.gameObject.SetActive(false);
             mainMenu.gameObject.SetActive(false);
         }
 
-        public void PlayGame()
+        public void OpenLevelSelectionMenu()
         {
+            mainMenu.gameObject.SetActive(true);
             levelSelectUI.gameObject.SetActive(true);
             startGameMenuUI.gameObject.SetActive(false);
-            Time.timeScale = 1.0f;
         }
 
         public void Questions() 
