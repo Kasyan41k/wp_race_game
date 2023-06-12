@@ -38,5 +38,10 @@ namespace PlayerModule
         {
             transform.position = startPosition;
         }
+
+        private void OnDisable()
+        {
+            Died = null;
+        }
     }
 }

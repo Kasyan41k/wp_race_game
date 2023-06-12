@@ -2,8 +2,11 @@
 using System.Collections;
 using PlayerModule;
 using QuestionsModule;
+using UIModule;
 using UnityEngine;
 using UnityEngine.UI;
+
+
 
 namespace Infrastructure
 {
@@ -12,17 +15,20 @@ namespace Infrastructure
         [SerializeField] private EnemiesSpawner enemiesSpawner;
         [SerializeField] private Car player;
         [SerializeField] private Text scoreText;
-        [SerializeField] private Questions questionPanel;
+        [SerializeField] private QuestionsUI questionUIPanel;
 
+        private const int MaxCountOfResurrect = 3;
         private LevelData _currentLevelData;
-        private int _score = 0;
+        private int _score;
         private bool _gameInProcess;
         private Coroutine _scoreCounterCoroutine;
+        private int _countOfLose;
         
         public event Action GameCompleted;
         public event Action GameLost;
+        public event Action Answered;
+        public event Action QuestionActivated;
 
-        private int _countOfLose;
 
         public void StartGame(LevelData levelData)
         {
@@ -36,14 +42,14 @@ namespace Infrastructure
             _countOfLose = 0;
             _gameInProcess = true;
             
-            questionPanel.Init(levelData.Questions);
-            questionPanel.AnswerSelected += OnAnswerSelected;
+            questionUIPanel.Init(levelData.Questions);
+            questionUIPanel.AnswerSelected += OnAnswerSelected;
             
             _scoreCounterCoroutine = StartCoroutine(ScoreNumerable());
             
             enemiesSpawner.StartSpawn();
+            Time.timeScale = 1;
             player.gameObject.SetActive(true);
-            //player.Reset();
             player.Died += LoseGame;
         }
 
@@ -52,11 +58,12 @@ namespace Infrastructure
             scoreText.gameObject.SetActive(false);
             _gameInProcess = false;
             StopCoroutine(_scoreCounterCoroutine);
-            questionPanel.AnswerSelected -= OnAnswerSelected;
-            questionPanel.gameObject.SetActive(false);
+            questionUIPanel.AnswerSelected -= OnAnswerSelected;
+            questionUIPanel.gameObject.SetActive(false);
             enemiesSpawner.StopSpawn();
+            enemiesSpawner.Clear();
             player.gameObject.SetActive(false);
-            
+            Time.timeScale = 0f;
         }
 
         private void OnAnswerSelected(bool answerIsCorrect)
@@ -64,7 +71,8 @@ namespace Infrastructure
             if (answerIsCorrect)
             {
                 ResumeGame();
-                questionPanel.gameObject.SetActive(false);
+                questionUIPanel.gameObject.SetActive(false);
+                Answered?.Invoke();
             }
             else
             {
@@ -72,7 +80,7 @@ namespace Infrastructure
             }
         }
 
-        private void ResumeGame()
+        public void ResumeGame()
         {
             Time.timeScale = 1f;
         }
@@ -91,8 +99,6 @@ namespace Infrastructure
                     CompleteGame();
                     yield break;
                 }
-                
-                //PlayerPrefs.SetInt("Score", _score);
             }
         }
 
@@ -102,7 +108,7 @@ namespace Infrastructure
             GameCompleted?.Invoke();
         }
 
-        private void PauseGame()
+        public void PauseGame()
         {
             Time.timeScale = 0f;
             scoreText.text = "Your score: " + _score;
@@ -112,15 +118,16 @@ namespace Infrastructure
         {
             PauseGame();
 
-            if (++_countOfLose > 3)
+            if (++_countOfLose > MaxCountOfResurrect)
             {
                 StopGame();
                 GameLost?.Invoke();
                 return;
             }
             
-            questionPanel.gameObject.SetActive(true);
-            questionPanel.GenerateQuest();
+            questionUIPanel.gameObject.SetActive(true);
+            questionUIPanel.GenerateQuest();
+            QuestionActivated?.Invoke();
         }
     }
 }

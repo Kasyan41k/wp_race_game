@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level1Data
   m_EditorClassIdentifier: 
   levelData:
-    maxScore: 1
+    maxScore: 5
     questions:
     - question: 3+7=?
       answer1: 1

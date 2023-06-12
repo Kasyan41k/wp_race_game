@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class EnemiesSpawner : MonoBehaviour
@@ -5,6 +7,8 @@ public class EnemiesSpawner : MonoBehaviour
     [SerializeField] private GameObject[] cars;
     [SerializeField] private float maxPos = 2.39f;
     [SerializeField] private float delayTimer = 0.9f;
+
+    private List<GameObject> _spawnedCars = new List<GameObject>();
     private float _timer;
     private int _carNumber;
 
@@ -22,7 +26,18 @@ public class EnemiesSpawner : MonoBehaviour
     {
         Vector3 carPos = new Vector3(Random.Range(-2.39f, 2.39f), transform.position.y, transform.position.z);
         _carNumber = Random.Range(0, cars.Length);
-        Instantiate(cars[_carNumber], carPos, transform.rotation);
+        var car = Instantiate(cars[_carNumber], carPos, transform.rotation);
+        _spawnedCars.Add(car);
         _timer = delayTimer;
+    }
+
+    public void Clear()
+    {
+        foreach (var car in _spawnedCars)
+        {
+            Destroy(car.gameObject);
+        }
+
+        _spawnedCars = new List<GameObject>();
     }
 }
